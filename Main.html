@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--基本-->
+    <link rel="stylesheet" href="codemirror-5.30.0/lib/codemirror.css" />
+    <script src="codemirror-5.30.0/lib/codemirror.js"></script>
+
+    <!--高亮xml-->
+    <script src="codemirror-5.30.0/mode/xml/xml.js"></script>
+
+    <!--高亮html css js混合,Python,C#,C++,Java,Objective-C,-->
+    <script src="codemirror-5.30.0/mode/javascript/javascript.js"></script>
+    <script src="codemirror-5.30.0/mode/css/css.js"></script>
+    <script src="codemirror-5.30.0/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="codemirror-5.30.0/mode/python/python.js"></script>
+    <script src="codemirror-5.30.0/mode/clike/clike.js"></script>
+
+    <!--绑定vim，sublime-->
+    <link rel="stylesheet" href="codemirror-5.30.0/addon/dialog/dialog.css" />
+    <script src="codemirror-5.30.0/keymap/vim.js"></script>
+    <script src="codemirror-5.30.0/keymap/sublime.js"></script>
+    <script src="codemirror-5.30.0/keymap/emacs.js"></script>
+    <script src="codemirror-5.30.0/addon/search/searchcursor.js"></script>
+    <script src="codemirror-5.30.0/addon/dialog/dialog.js"></script>
+
+
+    <!--括号匹配，全屏显示-->
+    <script src="codemirror-5.30.0/addon/edit/matchbrackets.js"></script>
+    <link rel="stylesheet" href="codemirror-5.30.0/addon/display/fullscreen.css" />
+    <script src="codemirror-5.30.0/addon/display/fullscreen.js"></script>
+
+    <!--主题-->
+    <link rel="stylesheet"href="codemirror-5.30.0/theme/3024-day.css" />
+    <link rel="stylesheet"href="codemirror-5.30.0/theme/3024-night.css" />
+
+    <!--代码折叠-->
+    <link rel="stylesheet" href="codemirror-5.30.0/addon/fold/foldgutter.css" />
+    <script src="codemirror-5.30.0/addon/fold/foldcode.js"></script>
+    <script src="codemirror-5.30.0/addon/fold/foldgutter.js"></script>
+    <script src="codemirror-5.30.0/addon/fold/brace-fold.js"></script>
+    <script src="codemirror-5.30.0/addon/fold/comment-fold.js"></script>
+    <script src="codemirror-5.30.0/addon/fold/indent-fold.js"></script>
+
+    <!--代码提示-->
+    <link rel="stylesheet" href="codemirror-5.30.0/addon/hint/show-hint.css" />
+    <script src="codemirror-5.30.0/addon/hint/show-hint.js"></script>
+    <script src="codemirror-5.30.0/addon/hint/html-hint.js"></script>
+    <script src="codemirror-5.30.0/addon/hint/xml-hint.js"></script>
+    <script src="codemirror-5.30.0/addon/hint/javascript-hint.js"></script>
+    <script src="codemirror-5.30.0/addon/hint/css-hint.js"></script>
+
+    <!--代码自动完成-->
+    <script src="codemirror-5.30.0/addon/edit/closetag.js"></script>
+    <script src="codemirror-5.30.0/addon/edit/closebrackets.js"></script>
+
+    <!--光标所在行高亮-->
+    <script src="codemirror-5.30.0/addon/fold/xml-fold.js"></script>
+    <script src="codemirror-5.30.0/addon/edit/matchtags.js"></script>
+
+    <link rel="stylesheet" href="css/Mian.css" />
+
+</head>
+<body>
+    <div class="navbar" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand">Edit++</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="Main.html">code</a></li>
+            <li><a href="mailto:xiaoguangtu@qq.com?cc=xiaoguangtu@outlook.com&subject=Bug提交和建议留言&body=您可以将发现的bug和期望的功能建议放到下面。我看到后会尽量进行回复。" target="_top">反馈</a></li>
+            <li><a href="">Tips</a></li>
+            <li><button class="btn btn-block btn-default navbar-btn glyphicon glyphicon-play "type="button" onclick="showResult()">运行</button></li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+          <div class="row clearfix">
+              <div class="col-md-1 column">
+                  <div class="btn-group">
+                      <select class="form-control" id="selectLanguage" onchange="selectLanguage()">
+                          <option>Html</option>
+                          <option>JavaScript</option>
+                          <option>C++</option>
+                          <option>C#</option>
+                          <option>Objective-C</option>
+                          <option>Java</option>
+                          <option>Python</option>
+                      </select>
+                      <br /> 
+                  </div>
+                  <button class="btn btn-block btn-info" type="button" data-toggle="modal" data-target="#Theme">主题</button>
+                  <button class="btn btn-block btn-info" type="button" onclick="enterFullScreen()">全屏</button>
+                  <button class="btn btn-block btn-info" type="button">语法提示</button>
+                  <button class="btn btn-block btn-info" type="button" data-toggle="modal" data-target="#keybord">键盘</button>
+                  <button class="btn btn-block btn-info" type="button">快捷键</button>
+                  <button class="btn btn-block btn-info" type="button">帮助</button>
+                  <button class="btn btn-block btn-info" type="button">下载代码段</button>
+              </div>
+              <div class="col-md-11 column">
+                  <div class="container-fluid">
+                      <div class="row clearfix">
+                          <div id="div-code" class="col-md-6 column">
+                                  <textarea id="code" style="display: none;"></textarea>
+                          </div>
+                          <div class="col-md-6 column">
+                              <div class="panel panel-default">
+                                  <div id="panel" class="panel-body">
+                                      <iframe id="view" frameborder="0"></iframe>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+    </div>
+
+    <div class="modal fade" id="Theme" tabindex="-1" role="dialog" aria-labelledby="ModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button"class="close"data-dissmiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="ModaLabel">主题</h4>
+                </div>
+                <div class="modal-body">
+                    <select class="form-control" id="selectTheme" onchange="selectTheme()">
+                        <option>3024-day</option>
+                        <option>3024-night</option>
+                    </select>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="keybord" tabindex="-1" role="dialog" aria-labelledby="ModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="ModaLabel">键盘</h4>
+                </div>
+                <div class="modal-body">
+                    <select class="form-control" id="selectkey" onchange="selectKeyboard()">
+                        <option>Defult</option>
+                        <option>Vim</option>
+                        <option>Sublime</option>
+                        <option>Emacs</option>
+                    </select>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="js/Main.js"></script>
+</body>
+</html>

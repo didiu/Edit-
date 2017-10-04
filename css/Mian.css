@@ -1,0 +1,15 @@
+﻿#code {
+    width:100%;
+    height:700px;
+}
+#panel {
+    width:100%;
+    height:700px;
+}
+body{
+    height:100vh;
+}
+#view{
+    width:100%;
+    height:100%;
+}
