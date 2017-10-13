@@ -4,6 +4,7 @@
     <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible"content="IE=edge" />
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -70,60 +71,75 @@
 <body>
     <div class="navbar" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand">Edit++</a>
+            <a class="navbar-brand" href="#">Edit++</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="Main.html">code</a></li>
+            <li><a data-toggle="modal"data-target="#Theme">主题</a></li>
+            <li><a onclick="enterFullScreen()">全屏</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    语言
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a onclick="selectlanguage('html')">html</a></li>
+                    <li><a onclick="selectlanguage('javascript')">JavaScript</a></li>
+                    <li><a onclick="selectlanguage('c++')">C++</a></li>
+                    <li><a onclick="selectlanguage('c#')">C#</a></li>
+                    <li><a onclick="selectlanguage('objective-c')">Objective-C</a></li>
+                    <li><a onclick="selectlanguage('java')">Java</a></li>
+                    <li><a onclick="selectlanguage('python')">Python</a></li>
+                    <li><a onclick="selectlanguage('HTML')">html</a></li>
+                </ul>
+            </li>
+            <li><a class="glyphicon glyphicon-play" onclick="updateview()">运行</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    导入js库
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a onclick="insertjs('jquery3-2-1')">jquery 3.2.1</a></li>
+                    <li><a onclick="insertjs('jquery3-2-0')">jquery 3.2.0</a></li>
+                    <li><a onclick="insertjs('jquery3-1-1')">jquery 3.1.1</a></li>
+                    <li><a onclick="insertjs('jquery3-1-0')">jquery 3.1.0</a></li>
+                    <li><a onclick="insertjs('jquery3-0-0')">jquery 3.0.0</a></li>
+                    <li><a onclick="insertjs('jquery2-2-4')">jquery 2.2.4</a></li>
+                </ul>
+            </li>
+            <li><a data-toggle="modal" data-target="#keybord">键盘</a></li>
+            <li><a data-toggle="modal" data-target="#fastkey">快捷键</a></li>
             <li><a href="mailto:xiaoguangtu@qq.com?cc=xiaoguangtu@outlook.com&subject=Bug提交和建议留言&body=您可以将发现的bug和期望的功能建议放到下面。我看到后会尽量进行回复。" target="_top">反馈</a></li>
-            <li><a href="">Tips</a></li>
-            <li><button class="btn btn-block btn-default navbar-btn glyphicon glyphicon-play "type="button" onclick="showResult()">运行</button></li>
+            <li><a data-toggle="modal" data-target="#ehelp">帮助</a></li>
+            <li><a>下载代码段</a></li>
+            <li><a class="" data-toggle="modal" data-target="#Options">设置</a></li>
         </ul>
     </div>
-    <div class="container-fluid">
-          <div class="row clearfix">
-              <div class="col-md-1 column">
-                  <div class="btn-group">
-                      <select class="form-control" id="selectLanguage" onchange="selectLanguage()">
-                          <option>Html</option>
-                          <option>JavaScript</option>
-                          <option>C++</option>
-                          <option>C#</option>
-                          <option>Objective-C</option>
-                          <option>Java</option>
-                          <option>Python</option>
-                      </select>
-                      <br /> 
-                  </div>
-                  <button class="btn btn-block btn-info" type="button" data-toggle="modal" data-target="#Theme">主题</button>
-                  <button class="btn btn-block btn-info" type="button" onclick="enterFullScreen()">全屏</button>
-                  <button class="btn btn-block btn-info" type="button">语法提示</button>
-                  <button class="btn btn-block btn-info" type="button" data-toggle="modal" data-target="#keybord">键盘</button>
-                  <button class="btn btn-block btn-info" type="button">快捷键</button>
-                  <button class="btn btn-block btn-info" type="button">帮助</button>
-                  <button class="btn btn-block btn-info" type="button">下载代码段</button>
-              </div>
-              <div class="col-md-11 column">
-                  <div class="container-fluid">
-                      <div class="row clearfix">
-                          <div id="div-code" class="col-md-6 column">
-                                  <textarea id="code" style="display: none;"></textarea>
-                          </div>
-                          <div class="col-md-6 column">
-                              <div class="panel panel-default">
-                                  <div id="panel" class="panel-body">
-                                      <iframe id="view" frameborder="0"></iframe>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-              </div>
-          </div>
-    </div>
 
+    <div class="container-fluid" id="main">
+         <div class="row clearfix">
+             <div id="div-code" class="col-md-6 column">
+                 <div >
+                     <div id="textdiv">
+                         <textarea id="code" style="display: none;"></textarea>
+                     </div>
+                 </div>          
+             </div>
+                     <div id="viewO" class="col-md-6 column">
+                         <div class="panel panel-default">
+                             <div id="panel" class="panel-body">
+                                 <iframe id="view" frameborder="0"></iframe>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+              
     <div class="modal fade" id="Theme" tabindex="-1" role="dialog" aria-labelledby="ModelLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:20%">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button"class="close"data-dissmiss="modal" aria-hidden="true">&times;</button>
@@ -141,7 +157,7 @@
     </div>
 
     <div class="modal fade" id="keybord" tabindex="-1" role="dialog" aria-labelledby="ModelLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:20%">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dissmiss="modal" aria-hidden="true">&times;</button>
@@ -160,6 +176,74 @@
         </div>
     </div>
 
+    <div class="modal fade"id="Options" tabindex="-1" role="dialog" aria-labelledby="Options" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="ModaOptions">设置</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline" role="form">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked="checked" onclick="foldgutter()"  id="foldgutt"/> 代码折叠 
+                            </label>
+                            <label>
+                                <input type="checkbox" checked="checked" onclick="islineNumber()" id="lineNum"/> 显示行号 
+                            </label>
+                            <label>
+                                <input type="checkbox" onclick="showview()" id="showV" />显示区
+                            </label>
+                            <label>
+                                <input type="checkbox" onclick="autuupdata()" id="autudata" />自动编译(仅html&css&javascript)
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="fastkey" tabindex="-1" role="dialog" aria-labelledby="fastkey" aria-hidden="true">
+        <div class="modal-dialog"style="width:20%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="modalfastkey">设置</h4>
+                </div>
+                <div class="modal-body">
+                    <label>运行：F9</label>
+                    <br />
+                    <label >全屏：F11</label>
+                    <br />
+                    <label>代码提示，代码补全：Ctrl</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade"id="ehelp" tabindex="-1" role="dialog" aria-labelledby="ehelp"aria-hidden="true">
+        <div class="modal-dialog"style="width:30%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"data-dissmiss="modal"aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="modelhelp">帮助</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        1.这是一个编辑器，目前支持前端，C++,Java,Objective-C,C#,Python。
+                    </p>
+                    <p>
+                        2.仅前端支持预览。
+                    </p>
+                    <p>
+                        3.支持代码高亮，行号，代码折叠，关键字提示，代码自动补全。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 <script src="js/Main.js"></script>
 </body>
 </html>
